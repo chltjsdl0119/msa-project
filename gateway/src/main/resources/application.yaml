@@ -1,0 +1,26 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: order-service
+          uri: lb://order-service       # Eureka에서 order-service 찾아서 로드밸런싱
+          predicates:
+            - Path=/api/orders/**       # 이 경로로 오면 order-service로 라우팅
+        - id: delivery-service
+          uri: lb://delivery-service
+          predicates:
+            - Path=/api/deliveries/**
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notifications/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/  # Eureka Server 주소
