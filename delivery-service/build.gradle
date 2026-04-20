@@ -7,5 +7,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+    implementation 'org.springframework.kafka:spring-kafka'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+
     runtimeOnly 'org.postgresql:postgresql'
 }
